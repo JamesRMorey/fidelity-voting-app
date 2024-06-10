@@ -1,12 +1,26 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import Api from '@/services/api'
 
 
 export const useAppStore = defineStore('app', () => {
+	
 	const user = ref(null);
-
 	const api = new Api();
+
+	const getUser = () => {
+		return new Promise(async (resolve, reject) => {
+			await api.getUser()
+				.then((response) => {
+					user.value = response;
+					resolve(response);
+				})
+				.catch((error) => {
+					user.value = null;
+					reject(error);
+				})
+		});
+	}
 
 	const login = (email, password) => {
 		return new Promise(async (resolve, reject) => {
@@ -50,6 +64,7 @@ export const useAppStore = defineStore('app', () => {
 
 	return {
 		user,
+		getUser,
 		login,
 		register,
 		logout

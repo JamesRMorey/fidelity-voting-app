@@ -22,7 +22,7 @@ const logout = async () => {
 </script>
 
 <template>
-    <button @click="logout" class="btn btn-secondary w-48">
+    <button @click="logout" class="btn btn-secondary w-32">
         <span v-if="config.loading" class="animate-spin">X</span>
         <span v-else>Logout</span>
     </button>

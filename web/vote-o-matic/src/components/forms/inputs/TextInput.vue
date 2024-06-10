@@ -2,10 +2,6 @@
 import { defineProps, toRefs, ref, watch } from 'vue';
 
 const props = defineProps({
-    value: {
-        type: String,
-        required: false,
-    },
     modelValue: {
         type: String,
         required: false,
@@ -38,10 +34,15 @@ const props = defineProps({
     },
 });
 
-const { value, errors, modelValue, placeholder, label } = toRefs(props);
+const { errors, modelValue, placeholder, label, type, id } = toRefs(props);
 const emit = defineEmits(['update:modelValue']);
 
-const current = ref(modelValue.value ?? value.value ?? null);
+const current = ref(modelValue.value ?? null);
+
+watch(modelValue, (value) => {
+    if (value === current.value) return;
+    current.value = value;
+});
 
 watch(current, (value) => {
     emit('update:modelValue', value);

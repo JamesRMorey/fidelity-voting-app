@@ -25,6 +25,18 @@ export default class Api {
         })
     }
 
+    async getUser() {
+        return new Promise(async ( resolve, reject ) => {
+            await axios.get( 'api/user' )
+            .then(( response ) => {
+                resolve( response.data );
+            })
+            .catch(( error ) => {
+                reject( error.response.data );
+            })
+        })
+    }
+
     async login( email, password ) {
         return new Promise(async ( resolve, reject ) => {
             await this.getCSRF();
@@ -63,6 +75,33 @@ export default class Api {
         return new Promise(async ( resolve, reject ) => {
             await this.getCSRF();
             await axios.post( 'logout' )
+            .then(( response ) => {
+                resolve( response.data );
+            })
+            .catch(( error ) => {
+                reject( error.response.data );
+            })
+        })
+    }
+
+    async getRandomQuestion() {
+        return new Promise(async ( resolve, reject ) => {
+            await axios.get( 'api/random-question' )
+            .then(( response ) => {
+                resolve( response.data );
+            })
+            .catch(( error ) => {
+                reject( error.response.data );
+            })
+        })
+    }
+
+    async vote( questionId, questionOptionId ) {
+        return new Promise(async ( resolve, reject ) => {
+            await this.getCSRF();
+            await axios.post( `api/question/${questionId}/vote`, {
+                question_option_id: questionOptionId 
+            })
             .then(( response ) => {
                 resolve( response.data );
             })

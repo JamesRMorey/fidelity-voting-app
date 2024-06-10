@@ -11,7 +11,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->publishes([
+            __DIR__ . '/../../config/ipInfo.php' => config_path('ipInfo.php'),
+        ], 'custom-config');
     }
 
     /**

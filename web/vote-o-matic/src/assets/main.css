@@ -5,7 +5,7 @@
 @layer base {
 
 	.custom-container {
-		@apply max-w-screen-lg mx-auto px-10 md:px-5;
+		@apply max-w-screen-lg min-h-screen my-auto py-16 mx-auto px-10 md:px-5;
 	}
 
 	body{
@@ -37,10 +37,6 @@
 		@apply bg-pink-500;
 	}
 
-	.btn-primary:hover {
-		@apply rotate-[-5deg];
-	}
-
 	.btn-secondary {
 		@apply bg-red-500;
 	}
@@ -50,7 +46,7 @@
 	}
 
 	.card {
-		@apply bg-white border-4 border-gray-900 p-12 standard-shadow;
+		@apply bg-white border-4 border-gray-900 p-6 md:p-12 standard-shadow;
 	}
 
 	.form-group .form-input {
@@ -71,5 +67,18 @@
 
 	.form-input.form-error {
 		@apply border-red-500;
+	}
+
+	label.form-radio {
+		@apply w-6 h-6 border-4 h-12 w-12 border-gray-900 standard-shadow transition-all ease-in-out duration-300;
+	}
+
+	
+	input[type="radio"] {
+		@apply hidden;
+	}
+
+	input[type="radio"]:checked + label.form-radio {
+		@apply bg-green-400 hover-shadow;
 	}
 }

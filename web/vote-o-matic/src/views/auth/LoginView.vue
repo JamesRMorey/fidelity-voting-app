@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import Container from '@/components/layout/Container.vue'
 import HeadingSmall from '@/components/layout/headings/HeadingSmall.vue'
 import TextInput from '@/components/forms/inputs/TextInput.vue'
 import { useAppStore } from '@/stores/app-store'
@@ -37,7 +36,7 @@ const handleLogin = async () => {
 </script>
 
 <template>
-	<div class="h-screen min-w-screen bg-teal-400">
+	<div class="bg-teal-400">
 		<div class="custom-container h-full flex flex-col items-center justify-center gap-16">
 			<HeadingSmall />
 			<form class="card w-full lg:w-2/3 flex flex-col gap-10" @submit.prevent="handleLogin">
@@ -67,8 +66,8 @@ const handleLogin = async () => {
 				</div>
 			</form>
 			<div class="flex flex-col md:flex-row gap-5 md:gap-10 w-full justify-center items-center">
-				<RouterLink :to="{ name: 'home' }" class="btn btn-tertiary w-4/5 md:w-48">Home</RouterLink>
-				<RouterLink :to="{ name: 'register' }" class="btn btn-secondary w-4/5 md:w-48">Register</RouterLink>
+				<RouterLink :to="{ name: 'home' }" class="btn btn-tertiary w-48">Home</RouterLink>
+				<RouterLink :to="{ name: 'register' }" class="btn btn-secondary w-48">Register</RouterLink>
 			</div>
 		</div>
 	</div>
