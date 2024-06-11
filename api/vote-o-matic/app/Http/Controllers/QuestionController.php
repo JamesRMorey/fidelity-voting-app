@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\QuestionResource;
-use App\Models\Question;
+use App\Services\QuestionService;
 use Illuminate\Http\JsonResponse;
 
 class QuestionController extends Controller
@@ -13,10 +13,7 @@ class QuestionController extends Controller
         try {
             $user = auth()->user();
 
-            $question = Question::with(['options'])
-                ->whereNotIn('id', $user->votes->pluck('question_id')->toArray())
-                ->inRandomOrder()
-                ->firstOrFail();
+            $question = QuestionService::randomForUser($user);
 
             return response()->json(new QuestionResource($question), 200);
         } catch (\Exception $e) {
